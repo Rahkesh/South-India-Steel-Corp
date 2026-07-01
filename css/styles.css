@@ -68,6 +68,10 @@ html {
   scrollbar-color: var(--primary) var(--bg-dark);
 }
 
+section[id] {
+  scroll-margin-top: 140px; /* Absolute offset backup for all browsers */
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg-body);
@@ -1965,6 +1969,10 @@ textarea.form-control {
   
   html {
     scroll-padding-top: 80px; /* Offset for smaller mobile header */
+  }
+
+  section[id] {
+    scroll-margin-top: 100px; /* Mobile offset backup */
   }
 
   .burger-menu {
