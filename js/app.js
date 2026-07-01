@@ -359,4 +359,31 @@ ${name}`;
       }[tag] || tag)
     );
   }
+
+  // 8. Bulletproof Smooth Scroll with Dynamic Header Height Offset
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return; // Skip empty hash links
+      
+      const targetElement = document.getElementById(targetId.substring(1));
+      if (targetElement) {
+        e.preventDefault();
+        
+        // Calculate header height dynamically on click
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight : 130;
+        
+        // Target scroll position = Target element top + current scroll position - header offset - 15px margin
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 15;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
 });
+
